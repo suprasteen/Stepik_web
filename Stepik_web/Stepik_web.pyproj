@@ -69,6 +69,7 @@
     <Content Include="Stepik_web\templates\contact.html" />
     <Content Include="Stepik_web\templates\index.html" />
     <Content Include="Stepik_web\templates\layout.html" />
+    <Content Include="Stepik_web\templates\search.html" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
