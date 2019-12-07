@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block container %}
+   
+   <div class="content">
+       {% if len_result == 0 %}
+     <br><h2>По запросу "{{ search }}" ничего не найдено </h2><br>
+     <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Рекомендуем посмотреть</h3><br>
+            </div>
+        </div>
+         <div class="row">
+             {% for id in range(3) %}
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                    <img src="//img.youtube.com/vi/{{ videos[random_id[id]].id }}/mqdefault.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">
+                          {% if videos[random_id[id]].title|length > 21 %}
+                          {{ videos[random_id[id]].title[0:19] }}...
+                          {% else %}
+                          {{ videos[random_id[id]].title }}
+                          {% endif %}
+                      </h5>
+                      <a href="/videos/{{ random_id[id] }}" class="btn btn-primary mt-2">Воспроивести</a>
+                    </div>
+                    </div>
+                </div>
+             {% endfor %}
+                </div></div>
+            </div>
+
+        {% else %}
+     <br><h2>Результаты поиска по запросу "{{ search }}": </h2><br>
+     <div class="container">
+
+         {% for result in search_result %}
+         <div class="card mb-3" style="max-width: 700px;">
+            <div class="row no-gutters">
+               <div class="col-md-4">
+                <img src="//img.youtube.com/vi/{{ videos[result].id }}/mqdefault.jpg" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title" href="/videos/{{ result }}">{{ videos[result].title }}</h5>
+                  <a class="btn btn-primary mt-3" href="/videos/{{ result }}"> ► Начать просмотр</a>
+                </div>
+              </div>
+             </div>
+         </div>
+         {% endfor %}
+         {% endif %}
+     </div>
+    </div>  
+
+{% endblock %}

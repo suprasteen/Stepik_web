@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block container %}
+   
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-8">
+        <h2 class="my-3">Что такое философия?</h2>
+
+            <iframe width="700" height="468" src="https://www.youtube.com/embed/KshafAmECAo" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>
+         </div>
+      <div class="col my-5">
+
+        <div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Пифагор
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        «Жизнь, - говорил он, - подобна игрищам: иные приходят на них состязаться, иные - торговать, а самые счастливые - смотреть; так и в жизни иные, подобные рабам, рождаются жадными до славы и наживы, между тем как философы - до единой только истины».
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Жан-Поль Сартр
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        Моя мысль — это я: вот почему я не могу перестать мыслить. Я существую, потому что мыслю, и я не могу помешать себе мыслить. Вот даже в эту минуту — это чудовищно — я существую ПОТОМУ, что меня приводит в ужас, что я существую. Это я, Я САМ извлекаю себя из небытия, к которому стремлюсь: моя ненависть, мое отвращение к существованию — это все разные способы ПРИНУДИТЬ МЕНЯ существовать, ввергнуть меня в существование.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Иммануил Кант
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        Есть такие заблуждения, которые нельзя опровергнуть. Надо сообщить заблуждающемуся уму такие знания, которые его просветят. Тогда заблуждения исчезнут сами собою.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Виктор Пелевин
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+      <div class="card-body">
+        Жизнь очень странно устроена. Чтобы вылезти из колодца, надо в него упасть.
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+</div>
+<div class="container mt-4">
+     <p><h3>С чего начать знакомство?</h3></p>
+
+
+{% for i in range(0,4,3) %}
+<div class="card-group mt-2">
+  {% for id in range(3) %}
+      <div class="card">
+        <img src="//img.youtube.com/vi/{{ videos[random_id[id + i]].id }}/mqdefault.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{% if videos[random_id[id + i]].title|length > 30 %}
+                          {{ videos[random_id[id + i]].title[0:27] }}...
+                          {% else %}
+                          {{ videos[random_id[id + i]].title }}
+                          {% endif %}</h5>
+<!--          <p class="card-text">This is a wider card with </p>-->
+          <a href="/videos/{{ random_id[id + i] }}" class="btn btn-primary mt-3">Воспроивести</a>
+        </div>
+      </div>
+  {% endfor %}
+      </div>
+{% endfor %}
+
+</div>
+{% endblock %}

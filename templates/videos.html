@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block container %}
+   
+   <div class="content">
+     <h2>Библиотека</h2>
+     <div class="videos">
+        {% for video in videos %}
+         <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+               <div class="col-md-4">
+                <img src="//img.youtube.com/vi/{{ videos[video].id }}/mqdefault.jpg" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title" href="/videos/{{ video }}">{{ videos[video].title }}</h5>
+                  <a class="btn btn-primary" href="/videos/{{ video }}"> ► Начать просмотр</a>
+                </div>
+              </div>
+             </div>
+         </div>
+         {% endfor %}
+
+
+     </div>
+    </div>  
+
+{% endblock %}
