@@ -1,0 +1,20 @@
+
+{% block ramdom_video_six %}
+    {% for i in range(0,4,3) %}
+    <div class="card-group mt-2">
+    {% for id in range(3) %}
+      <div class="card">
+        <img src="//img.youtube.com/vi/{{ videos[random_id[id + i]].id }}/mqdefault.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{% if videos[random_id[id + i]].title|length > 30 %}
+                          {{ videos[random_id[id + i]].title[0:27] }}...
+                          {% else %}
+                          {{ videos[random_id[id + i]].title }}
+                          {% endif %}</h5>
+            <a href="/videos/{{ random_id[id + i] }}" class="btn btn-primary mt-3">Воспроивести</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+{% endblock %}

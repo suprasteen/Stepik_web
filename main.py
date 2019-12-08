@@ -101,4 +101,5 @@ def about():
     random_id = random_ident(6)
     return render_template('about.html', videos = videos, playlists = playlists, random_id = random_id, title_page = title_page)
 
-app.run('0.0.0.0',9090)
+if __name__ == '__main__':
+    app.run()
