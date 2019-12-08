@@ -1,17 +1,38 @@
 {% extends 'base.html' %}
 
 {% block container %}
-   
+
    <div class="content my-4">
+       <div class="row">
         <div class="col-md-8">
             <h2 class="my-3">{{ videos[video_id].title }}</h2>
             <div class="mt-3 mb-3"><button class="btn btn-danger" type="submit">Теги: </button>
                 {% for tag in videos[video_id].tags %}
                 <a class="btn btn-primary" href="/search/?input_search={{ tag }}" role="button">{{ tag }}</a>
                 {% endfor %}</div>
-            <iframe width="860" height="600" src="https://www.youtube.com/embed/{{ videos[video_id].id }}" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>
+            <iframe width="780" height="440"  src="https://www.youtube.com/embed/{{ videos[video_id].id }}" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>
          </div>
+       <div class="col-md-4 card mb-3 ml-5" style="max-width: 300px;">
+        <h3 class="mt-3">Рекомендуем</h3>
+        {% for id in range(6) %}
+           <div class="row no-gutters">
+                <div class="col-md-4 pt-4">
+                    <img src="//img.youtube.com/vi/{{ videos[random_id[id]].id }}/mqdefault.jpg" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                    <a class="card-title" href="/videos/{{ random_id[id] }}">
+                        {% if videos[random_id[id]].title|length > 21 %}
+                          {{ videos[random_id[id]].title[0:19] }}...
+                          {% else %}
+                          {{ videos[random_id[id]].title }}
+                          {% endif %}</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
      </div>
-
+</div>
 
 {% endblock %}

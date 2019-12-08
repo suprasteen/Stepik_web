@@ -87,7 +87,8 @@ def videos_page():
 @app.route('/videos/<video_id>')
 def videos_page_id(video_id):
     title_page = f"{videos[int(video_id)]['title']}"
-    return render_template('video_page.html', videos = videos, playlists = playlists, video_id = int(video_id), link_base = link_base, title_page = title_page)
+    random_id = random_ident(6)
+    return render_template('video_page.html', videos = videos, playlists = playlists, video_id = int(video_id), link_base = link_base, title_page = title_page, random_id = random_id)
 
 @app.route('/playlists/<playlist_id>')
 def print_playlist(playlist_id):
