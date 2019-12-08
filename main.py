@@ -48,15 +48,18 @@ playlists = {
 
 }
 
+def random_ident(quantity):
+    random_id = []
+    while len(random_id) != quantity:
+        random_number = random.randrange(1, len(videos) + 1, 1)
+        if random_number not in random_id:
+            random_id.append(random_number)
+    return random_id
 
 @app.route('/')
 def main():
     title_page = "Главная"
-    random_id = []
-    while len(random_id) != 6:
-        random_number = random.randrange(1, len(videos) + 1, 1)
-        if random_number not in random_id:
-            random_id.append(random_number)
+    random_id = random_ident(6)
     print(random_id)
     return render_template('index.html', videos = videos, random_id = random_id, playlists = playlists, title_page = title_page)
 
@@ -72,12 +75,7 @@ def search():
         for tag in videos[video_id]["tags"]:
             if search == tag.lower() and video_id not in search_result:
                 search_result.append(video_id)
-    random_id = []
-    while len(random_id) != 3:
-        random_number = random.randrange(1,len(videos)+1,1)
-        if random_number not in random_id:
-            random_id.append(random_number)
-    print(random_id)
+    random_id = random_ident(3)
     len_result = len(search_result)
     return render_template('search.html', videos = videos, search_result = search_result, search = search, len_result = len_result, random_id = random_id, playlists = playlists, title_page = title_page )
 
@@ -93,5 +91,13 @@ def videos_page_id(video_id):
 
 @app.route('/playlists/<playlist_id>')
 def print_playlist(playlist_id):
-    return render_template('playlist.html', videos = videos, playlists = playlists, playlist_id = playlist_id)
+    title_page = f"{playlists[int(playlist_id)]['title']}"
+    return render_template('playlist.html', videos = videos, playlists = playlists, playlist_id = int(playlist_id))
+
+@app.route('/about/')
+def about():
+    title_page = "О прокте"
+    random_id = random_ident(6)
+    return render_template('about.html', videos = videos, playlists = playlists, random_id = random_id, title_page = title_page)
+
 app.run('0.0.0.0',9090)

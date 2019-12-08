@@ -1,12 +1,26 @@
 {% extends 'base.html' %}
 
 {% block container %}
-   
-   <div class="content">
-     <h2>Videos</h2>
-     <div class="videos">
-        (list of videos)
-     </div>
-    </div>  
+   <div class="container mb-4">
+       <p><h2>{{ playlists[playlist_id].title }}</h2></p>
+   </div>
 
+   <div class="container pt-4">
+
+         {% for video_id in playlists[playlist_id].videos %}
+         <div class="card mb-3" style="max-width: 700px;">
+            <div class="row no-gutters">
+               <div class="col-md-4">
+                <img src="//img.youtube.com/vi/{{ videos[video_id].id }}/mqdefault.jpg" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title" href="/videos/{{ video_id }}">{{ videos[video_id].title }}</h5>
+                  <a class="btn btn-primary mt-3" href="/videos/{{ video_id }}"> ► Начать просмотр</a>
+                </div>
+              </div>
+             </div>
+         </div>
+         {% endfor %}
+    </div>
 {% endblock %}
